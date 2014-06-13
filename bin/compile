@@ -142,12 +142,12 @@ echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\
 # migrate database
 (
   if [ -d "$env_dir" ]; then
-    status "Exporting config vars for migration"
+    status "Exporting config vars for ember build"
     export_env_dir $env_dir
   fi
 
-  status "Running database migration"
-  node_modules/ember-cli/bin/ember build --environment production
+  status "Building ember app"
+  node_modules/ember-cli/bin/ember build --environment $NODE_ENV
 )
 
 # Post package.json to nomnom service
