@@ -67,7 +67,6 @@ heroku config:set BUILDPACK_URL=<your-github-url>#your-branch
 
 For more detailed information about testing buildpacks, see [CONTRIBUTING.md](CONTRIBUTING.md)
 
-
 Testing
 -------
 
