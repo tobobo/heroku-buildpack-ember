@@ -8,17 +8,9 @@ set -o pipefail   # don't ignore exit codes when piping output
 build_dir=$1
 cache_dir=$2
 env_dir=$3
-<<<<<<< HEAD
 
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 
-=======
-bp_dir=$(cd $(dirname $0); cd ..; pwd)
-
-# Fix leak
-unset GIT_DIR
-
->>>>>>> d04d0f07fe4f4b4697532877b9730f0d583acd1d
 # Load some convenience functions like status(), echo(), and indent()
 source $bp_dir/bin/common.sh
 
@@ -83,16 +75,6 @@ elif test -d $cache_dir/node/node_modules; then
 
 fi
 
-<<<<<<< HEAD
-# Handle npm's new cert bug
-# http://blog.npmjs.org/post/78085451721/npms-self-signed-certificate-is-no-more
-if [ ! -f "$build_dir/.npmrc" ]; then
-  status "Writing a custom .npmrc to circumvent npm bugs"
-  echo "ca=" > "$build_dir/.npmrc"
-fi
-
-=======
->>>>>>> d04d0f07fe4f4b4697532877b9730f0d583acd1d
 # Scope config var availability only to `npm install`
 (
   if [ -d "$env_dir" ]; then
@@ -150,8 +132,7 @@ status "Building runtime environment"
 mkdir -p $build_dir/.profile.d
 echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
 
-<<<<<<< HEAD
-# migrate database
+# build ember app
 (
   if [ -d "$env_dir" ]; then
     status "Exporting config vars for ember build"
@@ -162,8 +143,6 @@ echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\
   node_modules/ember-cli/bin/ember build --environment $NODE_ENV
 )
 
-=======
->>>>>>> d04d0f07fe4f4b4697532877b9730f0d583acd1d
 # Post package.json to nomnom service
 # Use a subshell so failures won't break the build.
 (
